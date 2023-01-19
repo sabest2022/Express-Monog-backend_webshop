@@ -32,7 +32,7 @@ async function loginUser(req, res, next) {
     return res.status(401).json("Wrong username or password");
   }
 
-  req.session = { username: user.username, isAdmin: user.isAdmin };
+  req.session = user;
 
   const jsonUser = user.toJSON();
   jsonUser._id = user._id;
