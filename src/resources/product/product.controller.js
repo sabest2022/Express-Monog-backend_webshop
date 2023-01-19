@@ -15,7 +15,7 @@ async function addProduct(req, res, next) {
     const product = await ProductModel.create(req.body);
     res.status(201).json(product);
   } catch (error) {
-    next(err);
+    next(error);
   }
 }
 
