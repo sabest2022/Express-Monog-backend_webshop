@@ -1,21 +1,14 @@
-// DEN HÄR FILEN MÅSTE REDIGERAS AV DIG SOM STUNDENT
-// SÅ ATT TESTERNA KAN HITTA DINA MODELLER
-import { beforeAll } from 'vitest';
+// DEN HÄR FILEN MÅSTE REDIGERAS AV DIG SOM STUDENT
+// SÅ ATT TESTERNA KAN LÄSA DIN KOD KORREKT.
 
-beforeAll(async () => {
-  // ANGE RÄTT IMPORT TILL DINA MODELLER NEDAN:
-  const { OrderModel } = await import('./src/resources/order/order.model');
-  const { ProductModel } = await import(
-    './src/resources/product/product.model'
-  );
-  const { UserModel } = await import('./src/resources/user/user.model');
-  const { CategoryModel } = await import(
-    './src/resources/category/category.model'
-  );
+// ÄNDRA FÖLJANDE RADER SÅ ATT DINA MODELLER IMPORTERAS KORREKT:
+import { CategoryModel } from "./src/resources/category/category.model";
+import { OrderModel } from "./src/resources/order/order.model";
+import { ProductModel } from "./src/resources/product/product.model";
+import { UserModel } from "./src/resources/user/user.model";
 
-  // DE HÄR RADERNA SKA INTE ÄNDRAS!
-  global.OrderModel = OrderModel;
-  global.ProductModel = ProductModel;
-  global.UserModel = UserModel;
-  global.CategoryModel = CategoryModel;
-});
+// ÄNDRA INTE FÖLJANDE KOD!
+global.GlobalCategoryModel = CategoryModel;
+global.GlobalOrderModel = OrderModel;
+global.GlobalProductModel = ProductModel;
+global.GlobalUserModel = UserModel;
