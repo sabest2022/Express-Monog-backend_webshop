@@ -8,12 +8,6 @@ const UserSchema = new Schema({
   isAdmin: { type: Boolean, default: false },
 });
 
-UserSchema.pre("save", encryptPassword);
-
-async function encryptPassword(next) {
-  this.password = await bcrypt.hash(this.password, 10);
-}
-
 const userJoiSchema = Joi.object({
   username: Joi.string().email().required(),
   password: Joi.string().min(4).required(),

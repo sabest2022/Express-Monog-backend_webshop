@@ -9,10 +9,10 @@ async function registerUser(req, res, next) {
       return res.status(409).json("User already exists");
     }
 
-    // const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const user = await new UserModel(req.body);
-    // user.password = hashedPassword;
+    user.password = hashedPassword;
     await user.save();
 
     const jsonUser = user.toJSON();
