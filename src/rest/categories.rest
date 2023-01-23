@@ -1,9 +1,0 @@
-POST http://localhost:3000/api/categories/
-Content-Type: application/json
-
-{
-    "title": "back-end",
-    "description": "This course fall under the category of back-end development"
-}
-
-###
