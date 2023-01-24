@@ -1,0 +1,11 @@
+POST "http://localhost:3000/api/product/"
+Content-Type: application/json
+
+{"title": "Filmen",
+    "description": "Jättebra!",
+    "price": 200,
+    "image":"Bild",
+    "instock": 2
+}
+
+###
