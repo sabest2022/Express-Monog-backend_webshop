@@ -1,4 +1,5 @@
 const { string } = require("joi");
+
 const {Schema, model, models} = require("mongoose");
 
 
@@ -19,17 +20,18 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
-    instock: {
+    inStock: {
         type: Number,
         required: true
-    },
-    category: {
-        type: Schema.Types.ObjectId,
-        ref: 'CategorySchema'//,
-        // required: true
     }
+    // ,
+    // categories: {
+    //     type: [Schema.Types.ObjectId],
+    //     ref: 'categories',
+    //     required: true
+    // }
 });
 
-const Product = models.product || model("product", productSchema);
+const ProductModel = models.product || model("product", productSchema);
 
-module.exports = { Product };
+module.exports = { ProductModel };
