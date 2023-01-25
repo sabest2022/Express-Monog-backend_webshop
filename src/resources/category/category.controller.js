@@ -14,4 +14,8 @@ async function createCategory (req, res) {
     res.status(201).json(category)
 };
 
+async function deleteCategory (req, res, next) {
+    
+}
+
 module.exports = { createCategory, getCategories }
