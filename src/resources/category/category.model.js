@@ -9,7 +9,8 @@ const categorySchema = new Schema ({
         type: String,
         required: true
     }
-});
+},
+{ versionKey: false })
 
 const CategoryModel = models.category || model("category", categorySchema);
 module.exports = { CategoryModel }

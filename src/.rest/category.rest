@@ -1,0 +1,11 @@
+GET http://localhost:3000/api/categories/getAll
+
+###
+
+POST http://localhost:3000/api/categories/createCategory
+Content-Type: application/json
+
+{
+    "title": "Romance",
+    "description": "15+"
+}

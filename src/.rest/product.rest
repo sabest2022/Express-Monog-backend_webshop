@@ -6,11 +6,12 @@ POST http://localhost:3000/api/products/newProduct
 Content-Type: application/json
 
 {
-    "title": "Filmen 1",
-    "description": "Jättebra!",
-    "price": 100,
-    "image":"Bild1",
-    "inStock": 15
+    "title": "Laughyty-laugh",
+    "description": "Laughtastic!",
+    "price": 300,
+    "image":"Laughy",
+    "inStock": 22,
+    "categories": ["63d1071e17292d2a26abfc66", "63d1080c17292d2a26abfc6a"]
 }
 
 ###
