@@ -1,8 +1,8 @@
 
-const mongoose = require('mongoose');
+const { Schema, model, models } = require('mongoose');
 
 
-const addressSchema = new mongoose.Schema({
+const DeliveryAddressSchema = new Schema({
     street: {
         type: String,
         required: true
@@ -17,9 +17,9 @@ const addressSchema = new mongoose.Schema({
     }
 });
 
-const orderItemSchema = new mongoose.Schema({
+const orderItemSchema = new Schema({
     product: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Product',
         required: true
     },
@@ -33,9 +33,9 @@ const orderItemSchema = new mongoose.Schema({
     }
 });
 
-const orderSchema = new mongoose.Schema({
+const orderSchema = new Schema({
     customer: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Customer',
         required: true
     },
@@ -44,7 +44,7 @@ const orderSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    deliveryAddress: addressSchema
+    deliveryAddress: { type: DeliveryAddressSchema, required: true },
 });
-const OrderModel = models.order || model("order", orderSchema);
+const OrderModel = models.Order || model("Order", orderSchema);
 module.exports = { OrderModel };
