@@ -24,13 +24,13 @@ const productSchema = new Schema({
         type: Number,
         required: true
     }
-    // ,
-    // categories: {
-    //     type: [Schema.Types.ObjectId],
-    //     ref: 'categories',
-    //     required: true
-    // }
-});
+    ,
+    categories: {
+        type: [Schema.Types.ObjectId],
+        ref: 'category',
+        required: true
+    }
+}, { versionKey: false });
 
 const ProductModel = models.product || model("product", productSchema);
 
