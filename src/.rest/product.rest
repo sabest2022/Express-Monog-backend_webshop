@@ -1,16 +1,16 @@
-GET http://localhost:3000/api/products/
+GET http://localhost:3000/api/products/getAll
 
 ###
 
-POST http://localhost:3000/api/products/
+POST http://localhost:3000/api/products/newProduct
 Content-Type: application/json
 
 {
-    "title": "Filmen 2",
-    "description": "Jättebra bättre än första!",
-    "price": 200,
-    "image":"Bild2",
-    "inStock": 4
+    "title": "Filmen 1",
+    "description": "Jättebra!",
+    "price": 100,
+    "image":"Bild1",
+    "inStock": 15
 }
 
 ###

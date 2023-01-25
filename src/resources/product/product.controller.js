@@ -7,7 +7,10 @@ async function createProduct(req, res, next) {
 
 
 async function getProducts(req, res, next) {
-    res.status(200).json("this works");
+    ProductModel.find( (err, docs) => {
+        if (err) return handleError(err);
+        res.status(200).json(docs);
+    });
 }
 
 module.exports = { createProduct, getProducts };
