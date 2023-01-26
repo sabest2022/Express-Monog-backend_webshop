@@ -9,6 +9,10 @@ productRouter.get("/", getProducts);
 
 productRouter.get("/:id", getProductID);
 
+productRouter.get("/byCategory/:id", getProductByCat);
+
+productRouter.get("/:id", getProductID);
+
 productRouter.get("/byCategory/", getProductByCat);
 
 

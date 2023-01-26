@@ -27,10 +27,10 @@ const productSchema = new Schema({
     ,
     categories: {
         type: [Schema.Types.ObjectId],
-        ref: 'categories',
+        ref: 'category',
         required: true
     }
-});
+}, { versionKey: false });
 
 const ProductModel = models.product || model("product", productSchema);
 

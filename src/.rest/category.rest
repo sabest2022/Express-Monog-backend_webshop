@@ -1,0 +1,15 @@
+GET http://localhost:3000/api/categories/
+
+###
+
+GET http://localhost:3000/api/categories/63d14aa09943c6c6e9ee22b7
+
+###
+
+POST http://localhost:3000/api/categories/createCategory
+Content-Type: application/json
+
+{
+    "title": "Horror",
+    "description": "18+"
+}

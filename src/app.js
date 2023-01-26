@@ -20,11 +20,14 @@ app.use(
     })
 );
 
+const { categoryRouter } = require("./resources/category/category.router");
+
 app.use("/api/products", productRouter);
 app.use("/api/categories", categoryRouter);
+
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
-//404
+
 app.use((req, res) => {
     res.status(404).json("Not found");
 });

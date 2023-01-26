@@ -2,15 +2,24 @@ GET http://localhost:3000/api/products/
 
 ###
 
+GET http://localhost:3000/api/products/5f4dab42c36a6d0c34e00000
+
+###
+
+GET http://localhost:3000/api/products/byCategory/63d127a68269c2d77a821a5e
+
+###
+
 POST http://localhost:3000/api/products/
 Content-Type: application/json
 
 {
-    "title": "Filmen 2",
-    "description": "Jättebra bättre än första!",
-    "price": 200,
-    "image":"Bild2",
-    "inStock": 4
+    "title": "Laughyty-laugh",
+    "description": "Laughtastic!",
+    "price": 300,
+    "image":"Laughy",
+    "inStock": 22,
+    "categories": ["63d1071e17292d2a26abfc66", "63d1080c17292d2a26abfc6a"]
 }
 
 ###
