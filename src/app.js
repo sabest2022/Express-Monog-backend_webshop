@@ -20,8 +20,6 @@ app.use(
     })
 );
 
-const { categoryRouter } = require("./resources/category/category.router");
-
 app.use("/api/products", productRouter);
 app.use("/api/categories", categoryRouter);
 
