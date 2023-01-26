@@ -3,13 +3,13 @@ const { createProduct, getProducts, getProductID, getProductByCat } = require(".
 const productRouter = express.Router();
 
 
-productRouter.post("/newProduct", createProduct);
+productRouter.post("/", createProduct);
 
 productRouter.get("/", getProducts);
 
 productRouter.get("/:id", getProductID);
 
-productRouter.get("/byCategory/", getProductByCat);
+productRouter.get("/byCategory/:id", getProductByCat);
 
 
 module.exports = { productRouter };
