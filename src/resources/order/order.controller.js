@@ -1,19 +1,19 @@
 const OrderModel = require('./order.model');
 // const Product = require('../product/product.model');
-const Customer = require('../customer/customer.model');
+const User = require('../user/user.model');
 
 
 async function createOrder(req, res, next) {
-    const customerId = req.body.customerId;
+    const userId = req.body.userId;
     // const products = req.body.products;
     let totalPrice = 0;
     let orderItems = [];
 
     // Validate customer
-    Customer.findById(customerId)
-        .then(customer => {
-            if (!customer) {
-                return res.status(404).json({ message: 'Invalid customer.' });
+    User.findById(userId)
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ message: 'Invalid user.' });
             }
 
             // // Validate products and calculate total price
@@ -47,10 +47,10 @@ async function createOrder(req, res, next) {
 
             // Create order
             const order = new OrderModel({
-                customer: customerId,
+                user: userId,
                 orderItems: orderItems,
                 totalPrice: totalPrice,
-                deliveryAddress: customer.address
+                deliveryAddress: user.address
             });
             order.save()
                 .then(createdOrder => {
