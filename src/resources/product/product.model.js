@@ -1,6 +1,6 @@
 const { string } = require("joi");
 
-const {Schema, model, models} = require("mongoose");
+const { Schema, model, models } = require("mongoose");
 
 
 const productSchema = new Schema({
@@ -16,7 +16,7 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
-    image:{
+    image: {
         type: String,
         required: true
     },

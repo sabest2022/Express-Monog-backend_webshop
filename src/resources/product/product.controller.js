@@ -1,3 +1,5 @@
+
+
 const { ProductModel } = require("./product.model");
 
 async function getProducts(req, res, next) {
