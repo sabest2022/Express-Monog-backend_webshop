@@ -16,10 +16,18 @@ Content-Type: application/json
 {
     "title": "Laughyty-laugh",
     "description": "Laughtastic!",
-    "price": 300,
+    "price": "300",
     "image":"Laughy",
-    "inStock": 22,
+    "inStock": "3",
     "categories": ["63d1071e17292d2a26abfc66", "63d1080c17292d2a26abfc6a"]
 }
+
+###
+
+PUT http://localhost:3000/api/products/
+
+###
+
+DELETE http://localhost:3000/api/products/63d395d8dc8f803acfa2dd65
 
 ###

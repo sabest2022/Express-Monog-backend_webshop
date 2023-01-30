@@ -27,11 +27,12 @@ const UserSchema = new Schema({
     isAdmin: {
         type: Boolean,
         default: false
-    },
-    deliveryAddress: {
-        type: AddressSchema,
-        required: true
-    },
+    }
+    // ,
+    // deliveryAddress: {
+    //     type: AddressSchema,
+    //     required: true
+    // },
 });
 
 const UserModel = models.user || model("user", UserSchema);
