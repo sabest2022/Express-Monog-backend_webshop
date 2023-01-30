@@ -24,7 +24,17 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/products/
+PUT http://localhost:3000/api/products/63d39603e0c43449814723f8
+Content-Type: application/json
+
+{
+    "categories": ["63d1071e17292d2a26abfc66", "63d1080c17292d2a26abfc6a"],
+    "inStock": "3",
+    "image":"Laughy",
+    "price": "150",
+    "description": "Laughtastic!",
+    "title": "Laughyty-laugh"
+}
 
 ###
 

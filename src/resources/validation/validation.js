@@ -11,4 +11,5 @@ const productJoiSchema = Joi.object(
     }
 );
 
+
 module.exports = { productJoiSchema };

@@ -14,7 +14,7 @@ productRouter.get("/byCategory/:id", getProductByCat);
 
 productRouter.post("/", isLoggedIn, isAdmin, validate(productJoiSchema), createProduct);
 
-productRouter.put("/", isLoggedIn, isAdmin, editProduct);
+productRouter.put("/:id", isLoggedIn, isAdmin, validate(productJoiSchema), editProduct);
 
 productRouter.delete("/:id", isLoggedIn, isAdmin, deleteProduct);
 

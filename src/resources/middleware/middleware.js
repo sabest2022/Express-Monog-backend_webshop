@@ -5,7 +5,7 @@ function isLoggedIn (req, res, next) {
         return next();
     }
     
-    return res.status(401).json("You are not an Admin, sorry...")
+    return res.status(401).json("You are not logged in, try again...")
 }
 
 
