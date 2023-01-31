@@ -1,0 +1,43 @@
+GET http://localhost:3000/api/orders/
+
+###
+
+GET http://localhost:3000/api/orders/5f4dab42c36a6d0c34e00000
+
+###
+
+GET http://localhost:3000/api/orders/byCategory/63d127a68269c2d77a821a5e
+
+###
+
+POST http://localhost:3000/api/orders/
+Content-Type: application/json
+
+{
+    "title": "Laughyty-laugh",
+    "description": "Laughtastic!",
+    "price": "300",
+    "image":"Laughy",
+    "inStock": "3",
+    "categories": ["63d1071e17292d2a26abfc66", "63d1080c17292d2a26abfc6a"]
+}
+
+###
+
+PUT http://localhost:3000/api/orders/63d39603e0c43449814723f8
+Content-Type: application/json
+
+{
+    "title": "Laughyty-laugh",
+    "description": "Laughtastic!",
+    "price": "300",
+    "image":"Laughy",
+    "inStock": "3",
+    "categories": ["63d1071e17292d2a26abfc66", "63d1080c17292d2a26abfc6a"]
+}
+
+###
+
+DELETE http://localhost:3000/api/orders/63d395d8dc8f803acfa2dd65
+
+###
