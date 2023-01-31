@@ -1,7 +1,7 @@
 const express = require("express");
 const { getProducts, getProductID, getProductByCat, createProduct, editProduct, deleteProduct } = require("./product.controller");
 const { isAdmin, isLoggedIn, validate } = require("../middleware/middleware");
-const { productJoiSchema } = require("../validation/validation.js")
+const { productJoiSchema } = require("./product.model")
 const productRouter = express.Router();
 
 

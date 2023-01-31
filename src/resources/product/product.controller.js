@@ -34,7 +34,6 @@ async function getProductByCat(req, res, next) {
 };
 
 async function createProduct(req, res, next) {
-    console.log("post?");
     try {
         const product = await ProductModel.create(req.body);
         res.status(201).json(product);
@@ -44,11 +43,10 @@ async function createProduct(req, res, next) {
 };
 
 async function editProduct(req, res, next) {
-    console.log("put?");
     try {
-        const updatedData = await ProductModel.findOneAndReplace({ _id: req.params.id }, req.body, { new: true });
+        const updatedData = await ProductModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
         if (!updatedData) {
-            res.status(404).json(req.params.id + " not found")
+            return res.status(404).json(req.params.id + " not found")
         }
         res.status(200).json(updatedData);
 

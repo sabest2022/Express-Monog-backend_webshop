@@ -1,4 +1,4 @@
-const { string } = require("joi");
+const Joi = require("joi");
 
 const { Schema, model, models } = require("mongoose");
 
@@ -34,4 +34,16 @@ const productSchema = new Schema({
 
 const ProductModel = models.product || model("product", productSchema);
 
-module.exports = { ProductModel };
+const productJoiSchema = Joi.object(
+    {
+        _id: Joi.string(),
+        title: Joi.string().required(),
+        description: Joi.string().required(),
+        price: Joi.number().required(),
+        image: Joi.string().required(),
+        inStock: Joi.number().required(),
+        categories: Joi.array().required()
+    }
+);
+
+module.exports = { ProductModel, productJoiSchema };
