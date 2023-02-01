@@ -1,19 +1,5 @@
 const { Schema, model, models } = require("mongoose");
-
-const AddressSchema = new Schema({
-    street: {
-        type: String,
-        required: true
-    },
-    city: {
-        type: String,
-        required: true
-    },
-    zip: {
-        type: String,
-        required: true
-    }
-});
+const Joi = require("joi");
 
 const UserSchema = new Schema({
     username: {
@@ -28,13 +14,16 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false
     }
-    // ,
-    // deliveryAddress: {
-    //     type: AddressSchema,
-    //     required: true
-    // },
 });
+
+const userJoiSchema = Joi.object(
+    {
+        username: Joi.string().email().required(),
+        password: Joi.string().min(5).max(18).required(),
+        isAdmin: Joi.boolean()
+    }
+);
 
 const UserModel = models.user || model("user", UserSchema);
 
-module.exports = { UserModel };
+module.exports = { UserModel, userJoiSchema };
