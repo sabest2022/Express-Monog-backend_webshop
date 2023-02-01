@@ -1,71 +1,27 @@
-const OrderModel = require('./order.model');
-// const Product = require('../product/product.model');
-const User = require('../user/user.model');
-
+const { OrderModel }  = require('./order.model');
+const { ProductModel} = require("../product/product.model");
 
 async function createOrder(req, res, next) {
-    const userId = req.body.userId;
-    // const products = req.body.products;
-    let totalPrice = 0;
-    let orderItems = [];
+    const order = new OrderModel({
+        user: req.session.user._id,
+        orderItems: req.body.orderItems,
+        deliveryAddress: req.body.deliveryAddress
+    })
+    order.save()
+    
+    for (items of [order]){
+        for (item of items.orderItems){
+            let product = await ProductModel.findById(item.product);
+            console.log(product.inStock)
+            console.log(item.quantity)
+            
+            // if (product.inStock - (items.quantity < 0)) { return res.status(400).json("Sold out.") }
+            product.inStock -= item.quantity;
+            await product.save();
+        }
+    }
 
-    // Validate customer
-    User.findById(userId)
-        .then(user => {
-            if (!user) {
-                return res.status(404).json({ message: 'Invalid user.' });
-            }
-
-            // // Validate products and calculate total price
-            // products.forEach(product => {
-            //   Product.findById(product.productId)
-            //     .then(foundProduct => {
-            //       if (!foundProduct) {
-            //         return res.status(404).json({ message: 'Invalid product.' });
-            //       }
-            //       if (foundProduct.inStock < product.quantity) {
-            //         return res.status(404).json({ message: 'Product out of stock.' });
-            //       }
-
-            //       // Update product stock
-            //       foundProduct.inStock -= product.quantity;
-            //       foundProduct.save();
-
-            //       // Add product to order items
-            //       orderItems.push({
-            //         product: product.productId,
-            //         quantity: product.quantity,
-            //         price: foundProduct.price
-            //       });
-
-            //       totalPrice += foundProduct.price * product.quantity;
-            //     })
-            //     .catch(err => {
-            //       return res.status(500).json({ message: 'Fetching product failed.' });
-            //     });
-            // });
-
-            // Create order
-            const order = new OrderModel({
-                user: userId,
-                orderItems: orderItems,
-                totalPrice: totalPrice,
-                deliveryAddress: user.address
-            });
-            order.save()
-                .then(createdOrder => {
-                    res.status(201).json({
-                        message: 'Order created successfully.',
-                        orderId: createdOrder._id
-                    });
-                })
-                .catch(err => {
-                    return res.status(500).json({ message: 'Creating order failed.' });
-                });
-        })
-        .catch(err => {
-            return res.status(500).json({ message: 'Fetching customer failed.' });
-        });
-};
+    res.status(201).json(order)
+}
 
 module.exports = { createOrder }
