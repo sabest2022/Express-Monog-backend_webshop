@@ -2,7 +2,7 @@ POST http://localhost:3000/api/users/register
 Content-Type: application/json
 
 {
-    "username": "admin@plugga.se",
+    "username": "user2@plugga.se",
     "password": "s3cr3t"
 }
 
@@ -12,7 +12,7 @@ POST http://localhost:3000/api/users/login
 Content-Type: application/json
 
 {
-    "username": "admin@plugga.se",
+    "username": "user1@plugga.se",
     "password": "s3cr3t"
 }
 
