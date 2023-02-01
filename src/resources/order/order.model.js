@@ -39,7 +39,7 @@ const orderSchema = new Schema({
         ref: 'Customer',
         required: true
     },
-    orderItems: [orderItemSchema],
+    orderItems: { type: [orderItemSchema], required: true },
     date: {
         type: Date,
         default: Date.now
