@@ -21,7 +21,7 @@ Content-Type: application/json
         "price": 79
         }, {
         "product": "63d1091d575de550c5e14cf4",
-        "quantity": 4,
+        "quantity": 6,
         "price": 1200
         }],
     "deliveryAddress": 
