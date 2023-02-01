@@ -14,12 +14,21 @@ POST http://localhost:3000/api/orders/
 Content-Type: application/json
 
 {
-    "title": "Laughyty-laugh",
-    "description": "Laughtastic!",
-    "price": "300",
-    "image":"Laughy",
-    "inStock": "3",
-    "categories": ["63d1071e17292d2a26abfc66", "63d1080c17292d2a26abfc6a"]
+    "orderItems": 
+        [{
+        "product": "63d1134c26186b138766f23a",
+        "quantity": 1,
+        "price": 79
+        }, {
+        "product": "63d1091d575de550c5e14cf4",
+        "quantity": 4,
+        "price": 1200
+        }],
+    "deliveryAddress": 
+        [{"street": "Shitgate",
+        "city": "Shit Town",
+        "zip": "222 22"
+        }]
 }
 
 ###

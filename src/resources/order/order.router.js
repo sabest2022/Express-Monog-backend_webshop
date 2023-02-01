@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router();
 const { createOrder } = require('./order.controller');
+const { isAdmin, isLoggedIn, validate } = require("../middleware/middleware");
 const orderRouter = express.Router();
 
 // Order routes
-router.post('/', createOrder);
+orderRouter.post('/', isLoggedIn, createOrder);
 
 
 module.exports = { orderRouter };
