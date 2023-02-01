@@ -1,7 +1,7 @@
 const { Schema, model, models } = require('mongoose');
 
 const deliveryAddressSchema = new Schema({
-    street: {type: String, required: true },
+    street: { type: String, required: true },
     city: { type: String, required: true },
     zip: { type: String, required: true }
 });
