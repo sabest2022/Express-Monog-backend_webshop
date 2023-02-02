@@ -7,7 +7,7 @@ const orderRouter = express.Router();
 // Order routes
 orderRouter.get('/', isLoggedIn, getAllOrders);
 orderRouter.get('/:id', isLoggedIn, getOrderId);
-orderRouter.post('/', isLoggedIn, validate(orderJoiSchema), createOrder);
+orderRouter.post('/', isLoggedIn, createOrder);
 
-
+// validate(orderJoiSchema),
 module.exports = { orderRouter };

@@ -14,7 +14,7 @@ const orderItemSchema = new Schema({
 });
 
 const orderSchema = new Schema({
-    user: { type: Schema.Types.ObjectId, ref: 'user', required: true },
+    customer: { type: Schema.Types.ObjectId, ref: 'user', required: true },
     orderItems: [orderItemSchema],
     date: { type: Date, default: Date.now },
     deliveryAddress: [deliveryAddressSchema],
