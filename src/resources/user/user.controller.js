@@ -2,8 +2,6 @@ const bcrypt = require("bcrypt");
 const { UserModel } = require("./user.model");
 // const { cookieSession } = require("../app");
 
-
-
 async function registerUser(req, res) {
     try {
         const userExist = await UserModel.findOne({ username: req.body.username });
@@ -32,14 +30,12 @@ async function registerUser(req, res) {
 async function loginUser(req, res) {
     try {
     const user = await UserModel.findOne({ username: req.body.username });
-    console.log(user);
     if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
         return res.status(401).json("Invalid username or password");
     }
     req.session = {user};
     const jsonUser = user.toJSON();
     delete jsonUser.password;
-    console.log(jsonUser);
     res.status(200).json(jsonUser);
 } catch (err) {
     res.status(401).json(err);
