@@ -2,7 +2,7 @@ GET http://localhost:3000/api/orders/
 
 ###
 
-GET http://localhost:3000/api/orders/63dbb41d5fa2c088ee25afd7
+GET http://localhost:3000/api/orders/63dbc4a60d3537ba5e9453d6
 
 ###
 
@@ -13,12 +13,10 @@ Content-Type: application/json
     "orderItems": 
         [{
         "product": "63d147469943c6c6e9ee22a3",
-        "quantity": 1,
-        "price": 150
+        "quantity": 3
         }, {
         "product": "63d147b99943c6c6e9ee22a6",
-        "quantity": 1,
-        "price": 500
+        "quantity": 3
         }],
     "deliveryAddress": 
         [{"street": "Shitgate",
@@ -29,6 +27,6 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/orders/63d395d8dc8f803acfa2dd65
+PUT http://localhost:3000/api/orders/63dbc4a60d3537ba5e9453d5
 
 ###
