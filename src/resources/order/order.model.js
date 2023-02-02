@@ -32,8 +32,8 @@ const orderJoiSchema = Joi.object(
         orderItems: Joi.array().required(),
         date: Joi.string().required(),
         deliveryAddress: Joi.array().required()
-    }
-);
+    } 
+)
 
 const OrderModel = models.Order || model("Order", orderSchema);
 
