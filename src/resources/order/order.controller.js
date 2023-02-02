@@ -4,7 +4,7 @@ const { ProductModel} = require("../product/product.model");
 async function createOrder(req, res, next) {
     try {
     const order = new OrderModel({
-        user: req.session.user._id,
+        customer: req.session.user._id,
         orderItems: req.body.orderItems,
         deliveryAddress: req.body.deliveryAddress
     })
