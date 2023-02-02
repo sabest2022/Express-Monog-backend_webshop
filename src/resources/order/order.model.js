@@ -5,7 +5,7 @@ const Joi = require("joi");
 const deliveryAddressSchema = new Schema({
     street: { type: String, required: true },
     city: { type: String, required: true },
-    zip: { type: String }
+    zipcode: { type: String, required: true }
 });
 
 const orderItemSchema = new Schema({
@@ -16,7 +16,6 @@ const orderItemSchema = new Schema({
 
 const orderSchema = new Schema({
     customer: { type: Schema.Types.ObjectId, ref: 'user', required: true },
-    isAdmin: { type: Boolean },
     orderItems: [orderItemSchema],
     date: { type: Date, default: Date.now },
     deliveryAddress: [deliveryAddressSchema],
