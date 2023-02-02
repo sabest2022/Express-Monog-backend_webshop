@@ -30,27 +30,30 @@ async function registerUser(req, res) {
 }
 
 async function loginUser(req, res) {
-
+    try {
     const user = await UserModel.findOne({ username: req.body.username });
-
+    console.log(user);
     if (!user || !(await bcrypt.compare(req.body.password, user.password))) {
         return res.status(401).json("Invalid username or password");
     }
     req.session = {user};
     const jsonUser = user.toJSON();
-    jsonUser._id = user._id;
     delete jsonUser.password;
-
-    res.status(200).json(jsonUser.username + " is logged in!");
+    console.log(jsonUser);
+    res.status(200).json(jsonUser);
+} catch (err) {
+    res.status(401).json(err);
+}
 }
 
 async function logoutUser(req, res, next) {
     try {
         req.session = null;
-        res.status(200).json("Logged out");
+
+        res.status(204).json("Logged out");
         
-    } catch (error) {
-        next(error);
+    } catch (err) {
+        res.status(401).json(err);
     }
 }
 

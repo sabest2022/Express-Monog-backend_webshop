@@ -2,6 +2,7 @@ const { OrderModel }  = require('./order.model');
 const { ProductModel} = require("../product/product.model");
 
 async function createOrder(req, res, next) {
+    try {
     const order = new OrderModel({
         user: req.session.user._id,
         orderItems: req.body.orderItems,
@@ -19,6 +20,9 @@ async function createOrder(req, res, next) {
         }
     }
     res.status(201).json(order)
+}catch (err) {
+    res.status(404).json(err)
+}
 }
 
 async function getAllOrders(req, res) {

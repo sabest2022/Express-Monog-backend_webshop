@@ -22,5 +22,5 @@ POST http://localhost:3000/api/users/logout
 Content-Type: application/json
 
 {
-    "username": "admin@plugga.se"
+    "username": "user1@plugga.se"
 }

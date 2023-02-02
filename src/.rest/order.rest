@@ -12,13 +12,13 @@ Content-Type: application/json
 {
     "orderItems": 
         [{
-        "product": "63d1134c26186b138766f23a",
+        "product": "63d147469943c6c6e9ee22a3",
         "quantity": 1,
-        "price": 79
+        "price": 150
         }, {
-        "product": "63d1091d575de550c5e14cf4",
+        "product": "63d147b99943c6c6e9ee22a6",
         "quantity": 1,
-        "price": 1200
+        "price": 500
         }],
     "deliveryAddress": 
         [{"street": "Shitgate",
