@@ -1,5 +1,6 @@
 const { Schema, model, models } = require('mongoose');
 const Joi = require("joi");
+const { boolean } = require('joi');
 
 
 const deliveryAddressSchema = new Schema({
@@ -11,7 +12,7 @@ const deliveryAddressSchema = new Schema({
 const orderItemSchema = new Schema({
     product: { type: Schema.Types.ObjectId, ref: 'product', required: true },
     quantity: { type: Number, required: true },
-    price: { type: Number}
+    price: { type: Number, default: 0 }
 });
 
 const orderSchema = new Schema({
@@ -19,6 +20,7 @@ const orderSchema = new Schema({
     orderItems: [orderItemSchema],
     date: { type: Date, default: Date.now },
     deliveryAddress: [deliveryAddressSchema],
+    shipped: { type: Boolean, default: false },
 }, { versionKey: false });
 
 const orderJoiSchema = Joi.object(
@@ -33,7 +35,7 @@ const orderJoiSchema = Joi.object(
         orderItems: Joi.array().required(),
         date: Joi.string().required(),
         deliveryAddress: Joi.array().required()
-    } 
+    }
 )
 
 const OrderModel = models.Order || model("Order", orderSchema);

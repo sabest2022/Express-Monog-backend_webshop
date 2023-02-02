@@ -15,8 +15,8 @@ async function createOrder(req, res, next) {
             for (item of items.orderItems) {
                 let product = await ProductModel.findById(item.product);
 
-                // if (product.inStock - (items.quantity < 0)) { return res.status(400).json("Sold out.") }
                 product.inStock -= item.quantity;
+                product.price *= item.quantity;
                 await product.save();
             }
         }
@@ -49,19 +49,32 @@ async function getOrderId(req, res) {
     try {
         if (req.session.user.isAdmin) {
             const order = await OrderModel.findOne({ _id: req.params.id }).populate("customer")
+            if (!order) {
+                return res.status(404).json(req.params.id + " not found")
+            }
             return res.status(200).json(order);
         }
         const user = req.session.user._id
         const orders = await OrderModel.find({ user: user }).populate("customer")
         const order = orders.find(element => (req.params.id == element._id))
         if (!order) {
-            res.status(404).json("order does not exist")
+            return res.status(404).json(req.params.id + " not found")
         }
-        console.log(order.customer._id);
+
+        if (!(order.customer._id == req.session.user._id)) {
+            return res.status(403).json("not user's order!")
+        }
         res.status(200).json(order)
     } catch {
         res.status(404).json("user has no orders yet.")
     }
 }
 
-    module.exports = { createOrder, getAllOrders, getOrderId }
+async function isShipped(req, res) {
+    const order = await OrderModel.findById({_id: req.params.id})
+    order.shipped = true;
+    await order.save()
+    res.status(200).json(order)
+}
+
+module.exports = { createOrder, getAllOrders, getOrderId, isShipped }
