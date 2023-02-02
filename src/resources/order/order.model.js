@@ -1,20 +1,22 @@
 const { Schema, model, models } = require('mongoose');
 const Joi = require("joi");
 
+
 const deliveryAddressSchema = new Schema({
     street: { type: String, required: true },
     city: { type: String, required: true },
-    zip: { type: String, required: true }
+    zip: { type: String }
 });
 
 const orderItemSchema = new Schema({
     product: { type: Schema.Types.ObjectId, ref: 'product', required: true },
     quantity: { type: Number, required: true },
-    price: { type: Number, required: true }
+    price: { type: Number}
 });
 
 const orderSchema = new Schema({
     customer: { type: Schema.Types.ObjectId, ref: 'user', required: true },
+    isAdmin: { type: Boolean },
     orderItems: [orderItemSchema],
     date: { type: Date, default: Date.now },
     deliveryAddress: [deliveryAddressSchema],
