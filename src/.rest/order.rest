@@ -2,7 +2,7 @@ GET http://localhost:3000/api/orders/
 
 ###
 
-GET http://localhost:3000/api/orders/5f4dab42c36a6d0c34e00000
+GET http://localhost:3000/api/orders/63dbb41d5fa2c088ee25afd7
 
 ###
 
@@ -23,7 +23,7 @@ Content-Type: application/json
     "deliveryAddress": 
         [{"street": "Shitgate",
         "city": "Shit Town",
-        "zip": "222 22"
+        "zipcode": "222 22"
         }]
 }
 

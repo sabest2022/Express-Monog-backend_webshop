@@ -6,7 +6,6 @@ async function createOrder(req, res, next) {
 
         const order = new OrderModel({
             customer: req.session.user._id,
-            isAdmin: req.session.user.isAdmin,
             orderItems: req.body.orderItems,
             deliveryAddress: req.body.deliveryAddress
         })
@@ -29,12 +28,10 @@ async function createOrder(req, res, next) {
 
 async function getAllOrders(req, res) {
     try {
-        if (req.session.user.isAdmin === true) {
-            const allOrders = await OrderModel.find({})
-            const adminOrders = allOrders.filter(order => order.isAdmin); // filtrera order som är från admin
-            const userOrders = allOrders.filter(order => !order.isAdmin); // filtrera order från användare
-            
-            return res.status(200).json(  {userOrders, adminOrders} ); // skicka som response
+        if (req.session.user.isAdmin) {
+            const allOrders = await OrderModel.find({}).populate("customer")
+
+            return res.status(200).json(allOrders);  // skicka som response
         }
         const user = req.session.user._id
         const orders = await OrderModel.find({ user: user })
@@ -49,9 +46,22 @@ async function getAllOrders(req, res) {
 
 
 async function getOrderId(req, res) {
-    const user = req.session.user._id
-    console.log(user);
-    // const orders = await OrderModel.find{}
+    try {
+        if (req.session.user.isAdmin) {
+            const order = await OrderModel.findOne({ _id: req.params.id }).populate("customer")
+            return res.status(200).json(order);
+        }
+        const user = req.session.user._id
+        const orders = await OrderModel.find({ user: user }).populate("customer")
+        const order = orders.find(element => (req.params.id == element._id))
+        if (!order) {
+            res.status(404).json("order does not exist")
+        }
+        console.log(order.customer._id);
+        res.status(200).json(order)
+    } catch {
+        res.status(404).json("user has no orders yet.")
+    }
 }
 
-module.exports = { createOrder, getAllOrders, getOrderId }
+    module.exports = { createOrder, getAllOrders, getOrderId }
