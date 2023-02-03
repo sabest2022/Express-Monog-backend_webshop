@@ -11,6 +11,7 @@ async function createOrder(req, res, next) {
         })
         
 
+
         for (items of [order]) {
             for (item of items.orderItems) {
                 let product = await ProductModel.findById(item.product);
@@ -72,7 +73,7 @@ async function getOrderId(req, res) {
 }
 
 async function isShipped(req, res) {
-    const order = await OrderModel.findById({_id: req.params.id})
+    const order = await OrderModel.findById({ _id: req.params.id })
     order.shipped = true;
     await order.save()
     res.status(200).json(order)
