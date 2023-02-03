@@ -3,7 +3,6 @@ const { ProductModel } = require("../product/product.model");
 
 async function createOrder(req, res, next) {
     try {
-
         const order = new OrderModel({
             customer: req.session.user._id,
             orderItems: req.body.orderItems,
@@ -13,15 +12,17 @@ async function createOrder(req, res, next) {
 
 
         for (items of [order]) {
-            for (item of items.orderItems) {
-                let product = await ProductModel.findById(item.product);
+            for (orderItem of items.orderItems) {
+                let product = await ProductModel.findById(orderItem.product);
 
-                product.inStock -= item.quantity;
-                item.price = product.price * item.quantity;
+                product.inStock -= orderItem.quantity;
+                orderItem.price = product.price * orderItem.quantity;
                 await product.save();
-                await order.save()
+                order.save()
             }
         }
+
+        
         res.status(201).json(order)
     } catch (err) {
         res.status(404).json(err)
