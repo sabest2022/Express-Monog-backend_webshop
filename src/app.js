@@ -1,15 +1,13 @@
-
 const express = require("express");
+require("express-async-errors");
 const app = express();
 const cookieSession = require("cookie-session");
-
 
 const { productRouter } = require("./resources/product/product.router");
 const { categoryRouter } = require("./resources/category/category.router");
 const { userRouter } = require("./resources/user/user.router");
 const { orderRouter } = require("./resources/order/order.router");
-// Här är ett bra ställe att lägga till routers och andra middlewares.
-require("express-async-errors");
+
 app.use(express.json());
 app.use(
     cookieSession({
@@ -22,7 +20,6 @@ app.use(
 
 app.use("/api/products", productRouter);
 app.use("/api/categories", categoryRouter);
-
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
 
@@ -30,7 +27,6 @@ app.use((req, res) => {
     res.status(404).json("Not found");
 });
 app.use((err, req, res, next) => {
-    console.log(err);
     const status = err.status || 500;
     res.status(status).json(err.message);
 });

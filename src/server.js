@@ -8,4 +8,4 @@ async function main() {
   mongoose.set('strictQuery', true);
   await mongoose.connect('mongodb://127.0.0.1:27017/webshop-api-js-db');
   app.listen(3000, () => console.log('Server is running on http://localhost:3000'));
-}
+};
