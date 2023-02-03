@@ -9,15 +9,16 @@ async function createOrder(req, res, next) {
             orderItems: req.body.orderItems,
             deliveryAddress: req.body.deliveryAddress
         })
-        order.save()
+        
 
         for (items of [order]) {
             for (item of items.orderItems) {
                 let product = await ProductModel.findById(item.product);
 
                 product.inStock -= item.quantity;
-                product.price *= item.quantity;
+                item.price = product.price * item.quantity;
                 await product.save();
+                await order.save()
             }
         }
         res.status(201).json(order)
