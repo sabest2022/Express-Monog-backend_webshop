@@ -3,7 +3,7 @@
     {
       "name": "Krav G",
       "setup": "npm install && npx plugga mongo",
-      "run": "npm test -- .g.",
+      "run": "npm test -- --run .g.",
       "input": "",
       "output": "",
       "comparison": "included",
@@ -13,7 +13,7 @@
     {
       "name": "Krav VG",
       "setup": "npm install && npx plugga mongo",
-      "run": "npm test -- .vg.",
+      "run": "npm test -- --run .vg.",
       "input": "",
       "output": "",
       "comparison": "included",
