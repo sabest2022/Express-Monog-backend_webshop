@@ -1,3 +1,5 @@
+// ----- Checks if user is logged in
+
 function isLoggedIn(req, res, next) {
   if (req.session.user) {
     return next();
@@ -6,6 +8,8 @@ function isLoggedIn(req, res, next) {
   return res.status(401).json("You are not logged in, try again...");
 };
 
+// ----- Checks if user is admin
+
 function isAdmin(req, res, next) {
   if (req.session.user.isAdmin) {
     return next();
@@ -13,6 +17,8 @@ function isAdmin(req, res, next) {
 
   return res.status(403).json("You are not an Admin, sorry...");
 }
+
+// ----- Validates argument schema
 
 function validate(schema) {
   return function (req, res, next) {
@@ -24,7 +30,6 @@ function validate(schema) {
   };
 };
 
-
-
+// ----- Exports functions to routers
 
 module.exports = { isAdmin, isLoggedIn, validate };

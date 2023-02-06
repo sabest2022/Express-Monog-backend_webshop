@@ -1,4 +1,8 @@
+// ----- Imports mongoose
+
 const { Schema, model, models } = require('mongoose');
+
+// ----- Schema to create delivery addresses
 
 const deliveryAddressSchema = new Schema({
     street: { type: String, required: true },
@@ -6,11 +10,15 @@ const deliveryAddressSchema = new Schema({
     zipcode: { type: String, required: true }
 });
 
+// ----- Schema to create order items
+
 const orderItemSchema = new Schema({
     product: { type: Schema.Types.ObjectId, ref: 'product', required: true },
     quantity: { type: Number, required: true },
     price: { type: Number, default: 0 }
 });
+
+// ----- Schema to create order
 
 const orderSchema = new Schema({
     customer: { type: Schema.Types.ObjectId, ref: 'user', required: true },
@@ -20,6 +28,10 @@ const orderSchema = new Schema({
     shipped: { type: Boolean, default: false },
 }, { versionKey: false });
 
+// ----- Checks if "Order" model exist in DB, if not, it creates it
+
 const OrderModel = models.Order || model("Order", orderSchema);
 
-module.exports = { OrderModel, orderItemSchema, deliveryAddressSchema };
+// ----- Exports model to controller
+
+module.exports = { OrderModel};

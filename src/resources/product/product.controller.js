@@ -1,4 +1,8 @@
+// ----- Imports model
+
 const { ProductModel } = require("./product.model");
+
+// ----- Get all products from DB
 
 async function getProducts(req, res, next) {
     try {
@@ -8,6 +12,8 @@ async function getProducts(req, res, next) {
         res.status(404).json(err);
     };
 };
+
+// ----- Get a specific product by ID
 
 async function getProductID(req, res, next) {
     try {
@@ -21,6 +27,8 @@ async function getProductID(req, res, next) {
     };
 };
 
+// ----- Get all products by the same category
+
 async function getProductByCat(req, res, next) {
     try {
         const products = await ProductModel.find({ categories: req.params.id });
@@ -29,6 +37,8 @@ async function getProductByCat(req, res, next) {
         res.status(404).json(err);
     };
 };
+
+// ----- Create new product to DB
 
 async function createProduct(req, res, next) {
     try {
@@ -39,6 +49,8 @@ async function createProduct(req, res, next) {
     };
 };
 
+// ----- Edit a product and save it in DB
+
 async function editProduct(req, res, next) {
     try {
         const updatedData = await ProductModel.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
@@ -48,6 +60,8 @@ async function editProduct(req, res, next) {
         res.status(403).json(err);
     };
 };
+
+// ----- Delete a product 
 
 async function deleteProduct(req, res, next) {
     try {
@@ -60,5 +74,7 @@ async function deleteProduct(req, res, next) {
         res.status(404).json(req.params.id + " not found");
     };
 };
+
+// ----- Exports functions to router
 
 module.exports = { getProducts, getProductID, getProductByCat, createProduct, editProduct, deleteProduct };

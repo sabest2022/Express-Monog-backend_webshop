@@ -1,5 +1,12 @@
+// ----- Imports bcrypt
+
 const bcrypt = require("bcrypt");
+
+// ----- Imports model
+
 const { UserModel } = require("./user.model");
+
+// ----- Creating a new user and encrypting the password
 
 async function registerUser(req, res) {
     try {
@@ -24,6 +31,8 @@ async function registerUser(req, res) {
     };
 };
 
+// ----- Function to log in an existing user
+
 async function loginUser(req, res) {
     try {
         const user = await UserModel.findOne({ username: req.body.username });
@@ -42,6 +51,8 @@ async function loginUser(req, res) {
     };
 };
 
+// ----- Log out user and clears session
+
 async function logoutUser(req, res, next) {
     try {
         req.session = null;
@@ -50,5 +61,7 @@ async function logoutUser(req, res, next) {
         res.status(401).json(err);
     };
 };
+
+// ----- Exports functions to router
 
 module.exports = { registerUser, loginUser, logoutUser };

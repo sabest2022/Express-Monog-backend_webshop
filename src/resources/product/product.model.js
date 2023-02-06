@@ -1,5 +1,12 @@
+// ----- Imports joi (validation)
+
 const Joi = require("joi");
+
+// ----- Imports mongoose
+
 const { Schema, model, models } = require("mongoose");
+
+// ----- Schema to create products
 
 const productSchema = new Schema({
     title: { type: String, required: true },
@@ -10,7 +17,7 @@ const productSchema = new Schema({
     categories: { type: [Schema.Types.ObjectId], ref: 'category', required: true }
 }, { versionKey: false });
 
-const ProductModel = models.product || model("product", productSchema);
+// ----- Validates data before creating product
 
 const productJoiSchema = Joi.object(
     {
@@ -23,5 +30,11 @@ const productJoiSchema = Joi.object(
         categories: Joi.array().required()
     }
 );
+
+// ----- Checks if "Product" model exist in DB, if not, it creates it
+
+const ProductModel = models.product || model("product", productSchema);
+
+// ----- Exports model to controller and Joi Schema to router
 
 module.exports = { ProductModel, productJoiSchema };

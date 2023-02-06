@@ -1,5 +1,9 @@
+// ----- Imports models
+
 const { OrderModel } = require('./order.model');
 const { ProductModel } = require("../product/product.model");
+
+// ----- Creates a new order
 
 async function createOrder(req, res, next) {
     try {
@@ -8,6 +12,8 @@ async function createOrder(req, res, next) {
             orderItems: req.body.orderItems,
             deliveryAddress: req.body.deliveryAddress
         });
+
+        // ----- Loops through order array and then orderItem to decrease inventory in DB and calculates total price for purchased items
 
         for (items of [order]) {
             for (orderItem of items.orderItems) {
@@ -26,6 +32,8 @@ async function createOrder(req, res, next) {
     };
 };
 
+// ----- Get user orders or all orders as an admin
+
 async function getAllOrders(req, res) {
     try {
         if (req.session.user.isAdmin) {
@@ -42,9 +50,7 @@ async function getAllOrders(req, res) {
     };
 };
 
-
-
-
+// ----- get a specific user order as admin or a user's own order by ID
 
 async function getOrderId(req, res) {
     try {
@@ -59,7 +65,7 @@ async function getOrderId(req, res) {
         const order = orders.find(element => (req.params.id == element._id));
         
         if (!order) {return res.status(404).json(req.params.id + " not found")};
-        if (!(order.customer._id == req.session.user._id)) {
+        if (!(order.customer._id == user)) {
             return res.status(403).json("not user's order!")
         };
 
@@ -70,11 +76,15 @@ async function getOrderId(req, res) {
     };
 };
 
+// ----- Marks orders as shipped if admin
+
 async function isShipped(req, res) {
     const order = await OrderModel.findById({ _id: req.params.id });
     order.shipped = true;
     await order.save();
     res.status(200).json(order);
 };
+
+// ----- Exports functions to router
 
 module.exports = { createOrder, getAllOrders, getOrderId, isShipped };
