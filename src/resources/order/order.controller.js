@@ -37,7 +37,7 @@ async function createOrder(req, res, next) {
 async function getAllOrders(req, res) {
     try {
         if (req.session.user.isAdmin) {
-            const allOrders = await OrderModel.find({}).populate("customer");
+            const allOrders = await OrderModel.find().populate("customer");
             return res.status(200).json(allOrders);
         };
 
